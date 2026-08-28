@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --color-cream: #fbf6ec;
+  --color-cream-soft: #f4ecdb;
+  --color-surface: #fffdf9;
+  --color-ink: #17322c;
+  --color-ink-soft: #4a5751;
+  --color-pine: #1f4a40;
+  --color-pine-light: #2f6e5c;
+  /* Darkened from the initial #bc6b3b: that shade only hit 3.68:1 against
+     the cream background (fails WCAG AA's 4.5:1 for text) on the eyebrow
+     labels and the accent button. This tone holds ~5.3:1. */
+  --color-clay: #96562c;
+  --color-clay-light: #efc9a4;
+  --color-border: #e4d9c4;
+  --color-gold: #b8862f;
+}
+
+@theme inline {
+  --color-cream: var(--color-cream);
+  --color-cream-soft: var(--color-cream-soft);
+  --color-surface: var(--color-surface);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-pine: var(--color-pine);
+  --color-pine-light: var(--color-pine-light);
+  --color-clay: var(--color-clay);
+  --color-clay-light: var(--color-clay-light);
+  --color-border: var(--color-border);
+  --color-gold: var(--color-gold);
+  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-jakarta);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--color-clay-light);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-clay);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
